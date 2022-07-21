@@ -1,6 +1,4 @@
-// 1.
-
-let user = {
+const user = {
   first_name: "John",
   last_name: "Smith",
   email: "jhon_smith@mail.com",
@@ -12,129 +10,59 @@ let user = {
   },
 };
 
-console.log(`1. ${JSON.stringify(user, null, 4)}`);
+const array_of_object = [
+  {
+    first_name: "John",
+    last_name: "Smith",
+    email: "jhon_smith@mail.com",
+    umur: "35",
 
-console.log(`2. ${user.full_name()}`);
-// 3.
-class User {
-  constructor(first_name, last_name, email, umur) {
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.email = email;
-    this.umur = umur;
-  }
+    full_name() {
+      return this.first_name + " " + this.last_name;
+    },
+  },
 
-  full_name() {
-    return this.first_name + " " + this.last_name;
-  }
+  {
+    first_name: "Eliseo",
+    last_name: "Eugene Melvin",
+    email: "eliseo_eug@mail.com",
+    umur: "20",
+
+    full_name() {
+      return this.first_name + " " + this.last_name;
+    },
+  },
+
+  {
+    first_name: "Leighton",
+    last_name: "Ryker",
+    email: "leighton_r@mail.com",
+    umur: "24",
+
+    full_name() {
+      return this.first_name + " " + this.last_name;
+    },
+  },
+];
+
+const sort_by_umur = array_of_object.sort((a, b) => {
+  return a.umur - b.umur;
+});
+
+const sort_umur = array_of_object.sort((a, b) => {
+  return a.umur - b.umur;
+});
+
+let sum = 0;
+let rata_rata_umur = 0;
+for (let i = 0; i < array_of_object.length; i++) {
+  sum = array_of_object[i].umur;
+  rata_rata_umur = sum / array_of_object.length;
 }
 
-const array_of_object = [];
-
-let user_1 = new User("John", "Smith", "jhon_smith@mail.com", 35);
-let user_2 = new User("Josua", "Slamet", "josua_slamet@mail.com", 15);
-let user_3 = new User("Muhidin", "Akbar", "muhidin_akbar@mail.com", 20);
-
-array_of_object.push(user_1, user_2, user_3);
-
-console.log(
-  `3. Array of Object Data Before Sort: ` +
-    JSON.stringify(array_of_object, null, 4)
-);
-
-// 4.
-
-const asc = async (array) => {
-  try {
-    for (let i = 0; i < array.length; i++) {
-      for (let j = 0; j < array.length; j++) {
-        if (array[i].umur < array[j].umur) {
-          let temp = array[i];
-          array[i] = array[j];
-          array[j] = temp;
-        }
-      }
-    }
-
-    return array;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-asc(array_of_object).then((x) => {
-  console.log(
-    `4. Array of Object Data After Sort: ` + JSON.stringify(x, null, 4)
-  );
+const long_name = array_of_object.sort((a, b) => {
+  return b.full_name().length - a.full_name().length;
 });
-
-// 5.
-
-const count_average = async (array) => {
-  try {
-    let sum = 0;
-    for (let i = 0; i < array.length; i++) {
-      sum += array[i].umur;
-    }
-
-    let average = sum / array.length;
-    return average;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-count_average(array_of_object).then((x) => {
-  console.log(`5. Average of Age: ${x}`);
-});
-
-// 6.
-
-const sort_name = async (array) => {
-  try {
-    let new_name_array = [];
-    let longest_name = "";
-    for (let i = 0; i < array.length; i++) {
-      new_name_array.push(array[i].full_name());
-    }
-
-    for (let a = 0; a < new_name_array.length; a++) {
-      if (new_name_array[a].length > longest_name.length) {
-        longest_name = new_name_array[a];
-      }
-    }
-
-    return longest_name;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-sort_name(array_of_object).then((x) => {
-  console.log(`6. Longest Name: ${x}`);
-});
-
-// 7.
-
-const sort_umur = async (array) => {
-  try {
-    let umur_array = [];
-
-    for (let i = 0; i < array.length; i++) {
-      umur_array.push(array[i].umur);
-    }
-
-    return Math.min(...umur_array);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-sort_umur(array_of_object).then((umur) => {
-  console.log(`7. Minimum Age: ${umur}`);
-});
-
-// 8.
 
 class Shape {
   constructor(name) {
@@ -191,12 +119,46 @@ let rectangle = new Rectangle("Rectangle", 10, 20);
 let triangle = new Triangle("Triangle", 10, 20);
 let circle = new Circle("Circle", 10);
 
-console.log(`8. Luas Persegi Panjang : ${rectangle.luas()}`);
-console.log(`8. Luas Segitiga : ${triangle.luas()}`);
-console.log(`8. Luas Lingkaran : ${circle.luas()}`);
-
 const go_luas = (shape) => {
   return shape.luas();
 };
 
-console.log(`8. polymorphism : ${go_luas(rectangle)}`);
+console.log("1.======= Object Tanpa Class========");
+console.log(user);
+console.log("====================================");
+
+console.log("2. ======== Get Full Name  =========");
+console.log(user.full_name());
+console.log("====================================");
+
+console.log("3.======== Array of Object =========");
+console.log(array_of_object);
+console.log("====================================");
+
+console.log("4.========= Sort by Ummur ==========");
+console.log(sort_by_umur);
+console.log("====================================");
+
+console.log("5.======== Rata Rata Umur ==========");
+console.log(Math.floor(rata_rata_umur));
+console.log("====================================");
+
+console.log("6.======== Nama Terpanjang =========");
+
+console.log("======== Nama Terpanjang Pertama =========");
+console.log(long_name[0]);
+
+console.log("======== Sort by Nama Terpanjang =========");
+console.log(long_name);
+console.log("====================================");
+
+console.log("7.========= Umur Termuda ==========");
+console.log(sort_umur[0]);
+console.log("====================================");
+
+console.log("8.=============Shape ===============");
+console.log(`Luas Persegi Panjang : ${rectangle.luas()}`);
+console.log(`Luas Segitiga : ${triangle.luas()}`);
+console.log(`Luas Lingkaran : ${circle.luas()}`);
+console.log(`Polymorphism : ${go_luas(rectangle)}`);
+console.log("====================================");
